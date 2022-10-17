@@ -7,7 +7,7 @@ public class AmmoTextController : UIController
 {
     public override void UpdateText(float current, float max)
     {
-        gameObject.GetComponent<Text>().text = "AMMO: " + (int)current + " / " + (int)max;
+        gameObject.GetComponent<Text>().text = (int)current + " / " + (int)max;
     }
 
 }
