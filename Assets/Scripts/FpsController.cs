@@ -51,6 +51,7 @@ public class FpsController : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = (Cursor.lockState == CursorLockMode.Locked) ? CursorLockMode.None : CursorLockMode.Locked;
         yaw = transform.rotation.eulerAngles.y;
         pitch = transform.rotation.eulerAngles.x;
 

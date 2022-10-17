@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 3019058538830177678}
   - component: {fileID: 4247882364850908139}
   - component: {fileID: 3357619335656573989}
+  - component: {fileID: 8504609614279935140}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -281,6 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialHealth: 100
   initialArmor: 50
+  initialPoints: 0
   maxArmor: 100
   objectIsDead:
     m_PersistentCalls:
@@ -366,6 +368,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9930748, y: 2.0648348, z: 0.535691}
   m_Center: {x: -0.0034621023, y: 0.013535273, z: 0.035771817}
+--- !u!114 &8504609614279935140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357619335656574040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2fd329309cc814aaf3ff4b393a0099, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updatePoints:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  pointsToAdd: 0
 --- !u!1 &4042342262930085933
 GameObject:
   m_ObjectHideFlags: 0
