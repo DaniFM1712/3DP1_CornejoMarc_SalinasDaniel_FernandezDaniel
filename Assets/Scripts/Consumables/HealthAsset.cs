@@ -6,13 +6,18 @@ using UnityEngine;
 public class HealthAsset : ConsumableAsset
 {
     [SerializeField] float healthToAdd;
-    override public void consume(GameObject consumer)
+    override public bool consume(GameObject consumer)
     {
         if (consumer.TryGetComponent(out HealthSystem health))
         {
-            Debug.Log("Healed " + healthToAdd);
-            health.addHealth(healthToAdd);
+            if (health.checkCurrentHealth())
+            {
+                Debug.Log("Healed " + healthToAdd);
+                health.addHealth(healthToAdd);
+                return true;
+            }
         }
+        return false;
     }
 
 }

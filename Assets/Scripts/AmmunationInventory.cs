@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class AmmunationInventory : MonoBehaviour
 {
     [SerializeField] float maxBulletCharger;
+    [SerializeField] float maxTotalBullet;
     [SerializeField] float reserveBullets;
     [SerializeField] UnityEvent<float, float> updateAmmo;
     float currentAmmo;
@@ -55,5 +56,21 @@ public class AmmunationInventory : MonoBehaviour
         }
 
         updateAmmo.Invoke(currentAmmo, reserveBullets);
-    }   
+    }
+
+    public void addAmmo(float amount)
+    {
+        reserveBullets += amount;
+        if (reserveBullets > maxTotalBullet)
+        {
+            reserveBullets = maxTotalBullet;
+        }
+        updateAmmo.Invoke(currentAmmo, reserveBullets);
+    }
+
+    public bool checkCurrentAmmo()
+    {
+        return reserveBullets < maxTotalBullet;
+    }
+
 }

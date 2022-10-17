@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] float initialHealth;
+    [SerializeField] float maxHealth;
     [SerializeField] float initialArmor;
     [SerializeField] float maxArmor;
     [SerializeField] UnityEvent<GameObject, string> objectIsDead;
@@ -18,7 +19,7 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth = initialHealth;
         currentArmor = initialArmor;
-        updateHealth.Invoke(currentHealth, initialHealth);
+        updateHealth.Invoke(currentHealth, maxHealth);
         updateArmor.Invoke(currentArmor, maxArmor);
     }
     public void TakeDamage(float damage)
@@ -57,12 +58,12 @@ public class HealthSystem : MonoBehaviour
     public void addHealth(float amount)
     {
         currentHealth += amount;
-        if (currentHealth > initialHealth)
+        if (currentHealth > maxHealth)
         {
-            currentHealth = initialHealth;
+            currentHealth = maxHealth;
         }
 
-        updateHealth.Invoke(currentHealth, initialHealth);
+        updateHealth.Invoke(currentHealth, maxHealth);
     }
 
     public void addArmor(float amount)
@@ -75,4 +76,16 @@ public class HealthSystem : MonoBehaviour
 
         updateArmor.Invoke(currentArmor, maxArmor);
     }
+
+    public bool checkCurrentHealth()
+    {
+        return currentHealth < maxHealth;
+    }
+
+    public bool checkCurrentArmor()
+    {
+        return currentArmor < maxArmor;
+    }
+
+
 }
