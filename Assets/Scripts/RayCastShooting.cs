@@ -13,7 +13,7 @@ public class RayCastShooting : MonoBehaviour
     [SerializeField] float zOffset;
     [SerializeField] GameObject decalImage;
     [SerializeField] float damage;
-    //[SerializeField] Animation weaponAnimation;
+    [SerializeField] Animation weaponAnimation;
     [SerializeField] ObjectPool decalPool;
     [SerializeField] AmmunationInventory amoInventory;
     [SerializeField] KeyCode reloadKey = KeyCode.R;
@@ -74,15 +74,15 @@ public class RayCastShooting : MonoBehaviour
 
     void animateShoot()
     {
-        //weaponAnimation.CrossFade("Shoot",0.1f); //hace una interpolación entre la animación que esté haciendo en ese momento y la que pongamos entre las comillas
+        weaponAnimation.CrossFade("Shoot",0.1f); //hace una interpolación entre la animación que esté haciendo en ese momento y la que pongamos entre las comillas
                                             //es para hacer una transición más suave entre las animaciones
-        //weaponAnimation.CrossFadeQueued("Idle"); //este método es para que haga esta animación cuando haya acabado la animación que esté haciendo en ese momento
+        weaponAnimation.CrossFadeQueued("Idle"); //este método es para que haga esta animación cuando haya acabado la animación que esté haciendo en ese momento
     }
 
     void animateCantShoot()
     {
-        //weaponAnimation.CrossFade("CantShoot", 0.1f); 
-        //weaponAnimation.CrossFadeQueued("Idle");
+        weaponAnimation.CrossFade("CantShoot", 0.1f); 
+        weaponAnimation.CrossFadeQueued("Idle");
         
     }
 
@@ -102,7 +102,7 @@ public class RayCastShooting : MonoBehaviour
 
     void animateReload()
     {
-        //weaponAnimation.CrossFade("Reload");
-        //weaponAnimation.CrossFadeQueued("Idle");
+        weaponAnimation.CrossFade("Reload");
+        weaponAnimation.CrossFadeQueued("Idle");
     }
 }
