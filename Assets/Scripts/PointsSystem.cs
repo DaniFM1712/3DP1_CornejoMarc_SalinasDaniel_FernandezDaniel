@@ -16,7 +16,7 @@ public class PointsSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            addPoints(10f);
+            //addPoints(10f);
         }
     }
 

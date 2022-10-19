@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 8504609614279935140}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialHealth: 100
+  maxHealth: 0
   initialArmor: 50
-  initialPoints: 0
   maxArmor: 100
   objectIsDead:
     m_PersistentCalls:
@@ -343,6 +343,7 @@ MonoBehaviour:
   decalPool: {fileID: 0}
   amoInventory: {fileID: 0}
   reloadKey: 114
+  timeToShoot: 0
 --- !u!114 &4247882364850908139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +396,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  pointsToAdd: 0
 --- !u!1 &4042342262930085933
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxBulletCharger: 15
+  maxTotalBullet: 0
   reserveBullets: 60
   updateAmmo:
     m_PersistentCalls:
