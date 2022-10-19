@@ -17,6 +17,7 @@ public class RayCastShooting : MonoBehaviour
     [SerializeField] ObjectPool decalPool;
     [SerializeField] AmmunationInventory amoInventory;
     [SerializeField] KeyCode reloadKey = KeyCode.R;
+    bool aiming = false;
     [SerializeField] float timeToShoot;
     float lastTimeShooted = 0.0f;
 
@@ -36,6 +37,18 @@ public class RayCastShooting : MonoBehaviour
         if (Input.GetKeyDown(reloadKey))
         {
             reload();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            if (!aiming)
+            {
+                animateAim();
+            }
+            else
+            {
+                animateIdle();
+            }
+            aiming = !aiming;
         }
     }
 
@@ -80,16 +93,21 @@ public class RayCastShooting : MonoBehaviour
 
     void animateShoot()
     {
+        
         weaponAnimation.CrossFade("Shoot",0.1f); //hace una interpolación entre la animación que esté haciendo en ese momento y la que pongamos entre las comillas
                                             //es para hacer una transición más suave entre las animaciones
         weaponAnimation.CrossFadeQueued("Idle"); //este método es para que haga esta animación cuando haya acabado la animación que esté haciendo en ese momento
+        if (aiming)
+        {
+            cam.fieldOfView = 60;
+            aiming = !aiming;
+        }
     }
 
     void animateCantShoot()
     {
         weaponAnimation.CrossFade("CantShoot", 0.1f); 
         weaponAnimation.CrossFadeQueued("Idle");
-        
     }
 
     bool canShoot()
@@ -110,5 +128,18 @@ public class RayCastShooting : MonoBehaviour
     {
         weaponAnimation.CrossFade("Reload");
         weaponAnimation.CrossFadeQueued("Idle");
+    }
+
+    void animateAim()
+    {
+        weaponAnimation.CrossFade("Aim",0.1f);
+        cam.fieldOfView = 30;
+    }
+
+    void animateIdle()
+    {
+        weaponAnimation.CrossFade("NotAim");
+        weaponAnimation.CrossFadeQueued("Idle");
+        cam.fieldOfView = 60;
     }
 }
