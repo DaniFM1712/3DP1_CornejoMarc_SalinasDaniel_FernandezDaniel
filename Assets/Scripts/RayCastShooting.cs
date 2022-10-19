@@ -17,6 +17,8 @@ public class RayCastShooting : MonoBehaviour
     [SerializeField] ObjectPool decalPool;
     [SerializeField] AmmunationInventory amoInventory;
     [SerializeField] KeyCode reloadKey = KeyCode.R;
+    [SerializeField] float timeToShoot;
+    float lastTimeShooted = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class RayCastShooting : MonoBehaviour
     {
         if (canShoot())
         {
+            lastTimeShooted = Time.time;
             amoInventory.shoot();
             animateShoot();
             Ray r = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
@@ -68,7 +71,10 @@ public class RayCastShooting : MonoBehaviour
             //Instantiate(decalParticles, weaponDummy.position, weaponDummy.rotation);
             //ESTO ES PARA PONER PARTICULAS EN EL CAÑÓN DEL ARMA
         }
-        else animateCantShoot();
+        else if (amoInventory.getCurrentAmo() == 0)
+        {
+            animateCantShoot();
+        }
 
     }
 
@@ -88,7 +94,7 @@ public class RayCastShooting : MonoBehaviour
 
     bool canShoot()
     {
-        return amoInventory.getCurrentAmo() > 0; //&& weaponAnimation.IsPlaying("Idle");
+        return amoInventory.getCurrentAmo() > 0 && lastTimeShooted+timeToShoot < Time.time;
     }
 
     void reload()
