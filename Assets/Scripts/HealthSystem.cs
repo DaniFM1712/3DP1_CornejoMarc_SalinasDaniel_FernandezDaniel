@@ -52,6 +52,15 @@ public class HealthSystem : MonoBehaviour
     private void die()
     {
         objectIsDead.Invoke(gameObject, gameObject.name);
+        if (gameObject.CompareTag("Target")) {
+            foreach (Transform child in transform) {
+                if (child.CompareTag("Decal"))
+                {
+                    child.transform.parent = null;
+                    child.transform.gameObject.SetActive(false);
+                }
+            }
+        }
         Destroy(gameObject);
     }
 
