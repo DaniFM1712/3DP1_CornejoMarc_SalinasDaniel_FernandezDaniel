@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e94974d3f7a7b614c9e2d7b8f80295f9, type: 3}
-  m_Name: miniAmmo
+  m_Name: MiniAmmo
   m_EditorClassIdentifier: 
-  ammoToAdd: 0
+  ammoToAdd: 30
