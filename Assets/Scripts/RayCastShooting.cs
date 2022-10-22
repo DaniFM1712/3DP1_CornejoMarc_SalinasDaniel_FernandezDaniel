@@ -66,13 +66,13 @@ public class RayCastShooting : MonoBehaviour
                 Debug.Log("Shoot to: " + hitInfo.collider.gameObject.name);
                 //Debug.DrawRay(r.origin, r.direction);
 
-                GameObject decal = decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
+                //GameObject decal = decalPool.enableObject(hitInfo.point + hitInfo.normal * zOffset, Quaternion.LookRotation(hitInfo.normal));
 
-                decal.transform.parent = hitInfo.collider.gameObject.transform;
+                //decal.transform.parent = hitInfo.collider.gameObject.transform;
                 //Instantiate(decalImage, hitInfo.point +hitInfo.normal* zOffset, Quaternion.LookRotation(hitInfo.normal));
                 //ya no instanciamos porque lo hace la clase ObjectPool
 
-                if (hitInfo.collider.gameObject.TryGetComponent<HealthSystem>(out HealthSystem health))
+                if (hitInfo.collider.gameObject.TryGetComponent<HitColider>(out HitColider health))
                 {
                     health.TakeDamage(damage);
                 }

@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] UnityEvent<GameObject, string> objectIsDead;
     [SerializeField] UnityEvent<float, float> updateHealth;
     [SerializeField] UnityEvent<float, float> updateArmor;
-    float currentHealth;
+    [SerializeField] float currentHealth;
     float currentArmor;
 
     private void Awake()
@@ -45,11 +45,11 @@ public class HealthSystem : MonoBehaviour
         {
             die();
         }
-        updateHealth.Invoke(currentHealth, initialHealth);
-        updateArmor.Invoke(currentArmor, maxArmor);
+        //updateHealth.Invoke(currentHealth, initialHealth);
+        //updateArmor.Invoke(currentArmor, maxArmor);
     }
 
-    private void die()
+    public void die()
     {
         objectIsDead.Invoke(gameObject, gameObject.name);
         if (gameObject.CompareTag("Target")) {
@@ -61,6 +61,8 @@ public class HealthSystem : MonoBehaviour
                 }
             }
         }
+        if (gameObject.TryGetComponent(out DropItem item))
+            item.dropItem();
         Destroy(gameObject);
     }
 
@@ -96,5 +98,13 @@ public class HealthSystem : MonoBehaviour
         return currentArmor < maxArmor;
     }
 
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
 
+    public void getDestroyed()
+    {
+        Destroy(gameObject);
+    }
 }
