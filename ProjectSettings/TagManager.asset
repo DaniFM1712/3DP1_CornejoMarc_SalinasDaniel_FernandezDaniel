@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Decal
   - Target
+  - door
   layers:
   - Default
   - TransparentFX

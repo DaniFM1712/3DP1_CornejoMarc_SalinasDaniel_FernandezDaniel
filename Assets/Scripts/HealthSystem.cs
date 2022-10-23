@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -12,8 +14,9 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] UnityEvent<GameObject, string> objectIsDead;
     [SerializeField] UnityEvent<float, float> updateHealth;
     [SerializeField] UnityEvent<float, float> updateArmor;
-    [SerializeField] float currentHealth;
+    float currentHealth;
     float currentArmor;
+    [SerializeField] UnityEvent dmgFeedback;
 
     private void Awake()
     {
@@ -36,7 +39,10 @@ public class HealthSystem : MonoBehaviour
         {
             currentHealth -= damage;
         }
-
+        if (gameObject.tag == "Player")
+        {
+            dmgFeedback.Invoke();
+        }
         if(currentArmor <0.0f)
         {
             currentArmor = 0.0f;
@@ -45,8 +51,8 @@ public class HealthSystem : MonoBehaviour
         {
             die();
         }
-        //updateHealth.Invoke(currentHealth, initialHealth);
-        //updateArmor.Invoke(currentArmor, maxArmor);
+        updateHealth.Invoke(currentHealth, initialHealth);
+        updateArmor.Invoke(currentArmor, maxArmor);
     }
 
     public void die()

@@ -14,7 +14,6 @@ public class CheckDistanceToPlayer : MonoBehaviour
     {
         if (inDistance())
         {
-            Debug.Log("ESTOY MÁS CERCA");
             animator.SetBool("character_nearby",true);
         }
         else animator.SetBool("character_nearby", false);

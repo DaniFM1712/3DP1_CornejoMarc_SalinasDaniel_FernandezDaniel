@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
 
 
     enum State { IDLE, PATROL, ALERT, CHASE, ATTACK, HIT, DIE}
-    State currentState = State.IDLE;
-    Animation animation;
+    [SerializeField] State currentState;
+    //[SerializeField] Animation animation;
 
     [SerializeField] GameObject player;
     [SerializeField] float hearDistance;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
     [Header("ATTACK")]
     [SerializeField] float damage;
     [SerializeField] float maxShootDist;
-    [SerializeField] int shootingMask;
+    [SerializeField] LayerMask shootingMask;
     [SerializeField] float timeToShoot;
     [SerializeField] float SHOOT_MAX;
     float lastTimeShooted;
@@ -62,12 +62,12 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         lastCheckedHealth = GetComponent<HealthSystem>().getCurrentHealth();
+        currentState = State.IDLE;
     }
     // Update is called once per frame
     void Update()
     {
         distanceToPlayer = player.transform.position - transform.position;
-
         switch (currentState)
         {
             case State.ATTACK:
@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= idleStarted + idleTime)
         {
-            animation.Stop();
+            //animation.Stop();
             currentState = State.PATROL;
             currentPatrolTarget = 0;
         }
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
 
     private void updatePatrol()
     {
-        if (agent.isStopped) agent.isStopped = false;
+        if(agent.isStopped) agent.isStopped = false;
         agent.speed = patrolSpeed;
         agent.acceleration = patrolAcceleration;
         if (agent.hasPath && agent.remainingDistance < patrolMinDistance)
@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
         if (currentPatrolTarget > patrolRoundsToIdle * patrolTargets.Count)
         {
             currentState = State.IDLE;
-            animation.CrossFade("IdleDron");
+            ///animation.CrossFade("IdleDron", 0.1f);
             idleStarted = Time.time;
         }
 
@@ -161,6 +161,7 @@ public class Enemy : MonoBehaviour
 
     void ChangeFromAlert()
     {
+        
         if (seesPlayer() && PlayerInRange())
         {
             currentState = State.ATTACK;
@@ -172,7 +173,7 @@ public class Enemy : MonoBehaviour
         if (!hearsPlayer() || totalRotated >= 360.0f)
         {
             currentState = State.IDLE;
-            animation.CrossFade("IdleDron");
+            //animation.CrossFade("IdleDron",0.1f);
             idleStarted = Time.time;
         }
         isHit();
@@ -192,8 +193,8 @@ public class Enemy : MonoBehaviour
         //Es pot posar un if amb un maxViewDistance per fer que no et vegi si estàs molt lluny
         return true;*/
 
-        if (Vector3.Angle(transform.forward, distanceToPlayer) <= 15){
-            if (Physics.Raycast(transform.position, distanceToPlayer, out RaycastHit hitInfo, playerDistance, obstacleMask))
+        if (Vector3.Angle(transform.forward, distanceToPlayer) <= 45){
+            if (Physics.Raycast(transform.position, distanceToPlayer, out RaycastHit hitInfo, playerDistance, shootingMask))
             {
                 return true;
             }
@@ -208,6 +209,7 @@ public class Enemy : MonoBehaviour
 
     void updateChase()
     {
+        if (agent.isStopped) agent.isStopped = !agent.isStopped;
         agent.SetDestination(player.transform.position);
     }
 
@@ -227,6 +229,7 @@ public class Enemy : MonoBehaviour
 
     void updateAttack()
     {
+        if (!agent.isStopped) agent.isStopped = !agent.isStopped;
         RaycastHit hitInfo;
         if (Physics.Raycast(transform.position, distanceToPlayer, out hitInfo, maxShootDist, shootingMask))
         {
