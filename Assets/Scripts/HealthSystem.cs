@@ -11,7 +11,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float initialArmor;
     [SerializeField] float maxArmor;
-    [SerializeField] UnityEvent<GameObject, string> objectIsDead;
+    //[SerializeField] UnityEvent<GameObject, string> objectIsDead;
     [SerializeField] UnityEvent<float, float> updateHealth;
     [SerializeField] UnityEvent<float, float> updateArmor;
     float currentHealth;
@@ -47,6 +47,10 @@ public class HealthSystem : MonoBehaviour
         {
             currentArmor = 0.0f;
         }
+        if (currentHealth <= 0.0f)
+        {
+            die();
+        }
         updateHealth.Invoke(currentHealth, initialHealth);
         updateArmor.Invoke(currentArmor, maxArmor);
     }
@@ -65,13 +69,12 @@ public class HealthSystem : MonoBehaviour
         if (gameObject.TryGetComponent(out DropItem item))
             item.dropItem();
 
-        if (gameObject.tag == "Player")
+        if (gameObject.CompareTag("Player"))
         {
             Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene(1);
         }
         else Destroy(gameObject);
-
 
     }
 

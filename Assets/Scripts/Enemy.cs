@@ -286,29 +286,25 @@ public class Enemy : MonoBehaviour
 
     void updateDie()
     {
-        StartCoroutine(FadeOutObject());
         objectIsDead.Invoke(gameObject);
+        //StartCoroutine(FadeOutObject());
     }
 
-
+    /* NO FUNCIONA PER ALGUN MOTIU
     public IEnumerator FadeOutObject()
     {
-        while(bodyRenderer.material.color.a > 0)
+        Debug.Log("FADEOUT");
+        float alpha = 1f;
+        while (alpha > 0.0)
         {
-            Color objectColor1 = bodyRenderer.material.color;
-            Color objectColor2 = backRenderer.material.color;
-            
-            float fadeAmount1 = objectColor1.a - (fadeSpeed * Time.deltaTime);
-            float fadeAmount2 = objectColor2.a - (fadeSpeed * Time.deltaTime);
+            alpha -= Time.deltaTime / fadeSpeed;
+            bodyRenderer.material.color = new Color(bodyRenderer.material.color.r, bodyRenderer.material.color.g, bodyRenderer.material.color.b, alpha);
+            backRenderer.material.color = new Color(backRenderer.material.color.r, backRenderer.material.color.g, backRenderer.material.color.b, alpha);
 
-            objectColor1 = new Color(objectColor1.r, objectColor1.g, objectColor1.b, fadeAmount1);
-            objectColor2 = new Color(objectColor2.r, objectColor2.g, objectColor2.b, fadeAmount2);
-            bodyRenderer.material.color = objectColor1;
-            backRenderer.material.color = objectColor2;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForEndOfFrame();
         }
     }
-
+    */
 
     private void isHit()
     {

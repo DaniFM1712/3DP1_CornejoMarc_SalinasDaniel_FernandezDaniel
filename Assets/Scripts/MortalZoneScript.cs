@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MortalZoneScript : MonoBehaviour
 {
-    [SerializeField] Transform spawnPosition;
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

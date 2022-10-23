@@ -202,7 +202,6 @@ GameObject:
   - component: {fileID: 3452515227111564043}
   - component: {fileID: 3452515227111564042}
   - component: {fileID: 3452515227111564037}
-  - component: {fileID: 3452515227111564036}
   - component: {fileID: 3452515227111564039}
   m_Layer: 0
   m_Name: Robot_Scout_HyperX Variant
@@ -277,19 +276,6 @@ MonoBehaviour:
   dmgFeedback:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3452515227111564036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3452515227111564038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68de368c85d05ef46924f9d496a12394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drop: {fileID: 496901600306272999, guid: 8d6e8aa431f4a4f42ba568f591d719a7, type: 3}
 --- !u!114 &3452515227111564039
 MonoBehaviour:
   m_ObjectHideFlags: 0
