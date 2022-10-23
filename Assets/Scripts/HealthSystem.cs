@@ -47,17 +47,12 @@ public class HealthSystem : MonoBehaviour
         {
             currentArmor = 0.0f;
         }
-        if (currentHealth <= 0.0f)
-        {
-            die();
-        }
         updateHealth.Invoke(currentHealth, initialHealth);
         updateArmor.Invoke(currentArmor, maxArmor);
     }
 
     public void die()
     {
-        objectIsDead.Invoke(gameObject, gameObject.name);
         if (gameObject.CompareTag("Target")) {
             foreach (Transform child in transform) {
                 if (child.CompareTag("Decal"))
@@ -76,6 +71,8 @@ public class HealthSystem : MonoBehaviour
             SceneManager.LoadScene(1);
         }
         else Destroy(gameObject);
+
+
     }
 
     public void addHealth(float amount)
@@ -113,10 +110,5 @@ public class HealthSystem : MonoBehaviour
     public float getCurrentHealth()
     {
         return currentHealth;
-    }
-
-    public void getDestroyed()
-    {
-        Destroy(gameObject);
     }
 }

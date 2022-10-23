@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MortalZoneScript : MonoBehaviour
 {
     [SerializeField] Transform spawnPosition;
-    void Start()
-    {
-        
-    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -16,7 +13,8 @@ public class MortalZoneScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("ENTRA");
-            other.gameObject.transform.position = new Vector3(spawnPosition.position.x, spawnPosition.position.y, spawnPosition.position.z);
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(1);
         }
     }
 }

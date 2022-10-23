@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] UnityEvent<GameObject> objectIsDead;
 
 
+
     enum State { IDLE, PATROL, ALERT, CHASE, ATTACK, HIT, DIE}
     [SerializeField] State currentState;
 
@@ -55,6 +56,8 @@ public class Enemy : MonoBehaviour
 
     [Header("DIE")]
     [SerializeField] float fadeSpeed;
+    [SerializeField] MeshRenderer bodyRenderer;
+    [SerializeField] MeshRenderer backRenderer;
 
     private void Awake()
     {
@@ -283,21 +286,26 @@ public class Enemy : MonoBehaviour
 
     void updateDie()
     {
-        FadeOutObject();
+        StartCoroutine(FadeOutObject());
         objectIsDead.Invoke(gameObject);
     }
 
 
     public IEnumerator FadeOutObject()
     {
-        while(this.GetComponent<Renderer>().material.color.a > 0)
+        while(bodyRenderer.material.color.a > 0)
         {
-            Color objectColor = this.GetComponent<Renderer>().material.color;
-            float fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+            Color objectColor1 = bodyRenderer.material.color;
+            Color objectColor2 = backRenderer.material.color;
+            
+            float fadeAmount1 = objectColor1.a - (fadeSpeed * Time.deltaTime);
+            float fadeAmount2 = objectColor2.a - (fadeSpeed * Time.deltaTime);
 
-            objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-            this.GetComponent<Renderer>().material.color = objectColor;
-            yield return null;
+            objectColor1 = new Color(objectColor1.r, objectColor1.g, objectColor1.b, fadeAmount1);
+            objectColor2 = new Color(objectColor2.r, objectColor2.g, objectColor2.b, fadeAmount2);
+            bodyRenderer.material.color = objectColor1;
+            backRenderer.material.color = objectColor2;
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

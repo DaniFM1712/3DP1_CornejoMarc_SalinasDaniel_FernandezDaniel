@@ -307,7 +307,19 @@ MonoBehaviour:
     m_Bits: 1
   objectIsDead:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3452515227111564037}
+        m_TargetAssemblyTypeName: HealthSystem, Assembly-CSharp
+        m_MethodName: die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   currentState: 0
   player: {fileID: 0}
   hearDistance: 30
@@ -328,7 +340,9 @@ MonoBehaviour:
     m_Bits: 128
   timeToShoot: 2
   SHOOT_MAX: 20
-  fadeSpeed: 5
+  fadeSpeed: 50
+  bodyRenderer: {fileID: 3452515227092081256}
+  backRenderer: {fileID: 3452515228913187807}
 --- !u!1 &3452515227433000605
 GameObject:
   m_ObjectHideFlags: 0
