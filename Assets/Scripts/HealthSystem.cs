@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthSystem : MonoBehaviour
 {
@@ -69,7 +69,13 @@ public class HealthSystem : MonoBehaviour
         }
         if (gameObject.TryGetComponent(out DropItem item))
             item.dropItem();
-        Destroy(gameObject);
+
+        if (gameObject.tag == "Player")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene(1);
+        }
+        else Destroy(gameObject);
     }
 
     public void addHealth(float amount)
