@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     enum State { IDLE, PATROL, ALERT, CHASE, ATTACK, HIT, DIE}
     [SerializeField] State currentState;
-    //[SerializeField] Animation animation;
+    [SerializeField] Animation animation;
 
     [SerializeField] GameObject player;
     [SerializeField] float hearDistance;
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
         lastCheckedHealth = GetComponent<HealthSystem>().getCurrentHealth();
         currentState = State.IDLE;
     }
-    // Update is called once per frame
+
     void Update()
     {
         distanceToPlayer = player.transform.position - transform.position;
@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= idleStarted + idleTime)
         {
-            //animation.Stop();
+            animation.Stop();
             currentState = State.PATROL;
             currentPatrolTarget = 0;
         }
@@ -139,7 +139,7 @@ public class Enemy : MonoBehaviour
         if (currentPatrolTarget > patrolRoundsToIdle * patrolTargets.Count)
         {
             currentState = State.IDLE;
-            ///animation.CrossFade("IdleDron", 0.1f);
+            animation.CrossFade("IdleDron", 0.1f);
             idleStarted = Time.time;
         }
 
@@ -173,7 +173,7 @@ public class Enemy : MonoBehaviour
         if (!hearsPlayer() || totalRotated >= 360.0f)
         {
             currentState = State.IDLE;
-            //animation.CrossFade("IdleDron",0.1f);
+            animation.CrossFade("IdleDron",0.1f);
             idleStarted = Time.time;
         }
         isHit();
@@ -186,19 +186,19 @@ public class Enemy : MonoBehaviour
 
     bool seesPlayer()
     {
-        float playerDistance = (distanceToPlayer).magnitude;
-        /*if (Physics.Raycast(transform.position, player.transform.position - transform.position, out RaycastHit hitInfo, playerDistance, obstacleMask)){
-            return false;
-        }
-        //Es pot posar un if amb un maxViewDistance per fer que no et vegi si estàs molt lluny
-        return true;*/
+        float playerDistance = (player.transform.position - transform.position).magnitude;
 
-        if (Vector3.Angle(transform.forward, distanceToPlayer) <= 45){
-            if (Physics.Raycast(transform.position, distanceToPlayer, out RaycastHit hitInfo, playerDistance, shootingMask))
+        if (Vector3.Angle(transform.forward, distanceToPlayer.normalized) <= 15){
+            Ray r = new Ray(transform.position, distanceToPlayer.normalized);
+            if (Physics.Raycast(r, out RaycastHit hitInfo, playerDistance, obstacleMask))
             {
-                return true;
+                return false;
             }
-        }return false;
+            return true;
+        }
+
+        return false;
+
     }
     bool hearsPlayer()
     {
@@ -229,9 +229,10 @@ public class Enemy : MonoBehaviour
 
     void updateAttack()
     {
+  
         if (!agent.isStopped) agent.isStopped = !agent.isStopped;
-        RaycastHit hitInfo;
-        if (Physics.Raycast(transform.position, distanceToPlayer, out hitInfo, maxShootDist, shootingMask))
+        Debug.Log(seesPlayer());
+        if ((lastTimeShooted + timeToShoot < Time.time) && seesPlayer() && Physics.Raycast(transform.position, distanceToPlayer.normalized, out RaycastHit hitInfo, maxShootDist, shootingMask))
         {
             if (hitInfo.collider.gameObject.TryGetComponent<HealthSystem>(out HealthSystem health) && lastTimeShooted + timeToShoot < Time.time)
             {

@@ -327,6 +327,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   currentState: 0
+  animation: {fileID: 3452515227111564040}
   player: {fileID: 0}
   hearDistance: 30
   idleTime: 4
@@ -344,7 +345,7 @@ MonoBehaviour:
   maxShootDist: 50
   shootingMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 128
   timeToShoot: 2
   SHOOT_MAX: 20
   fadeSpeed: 5

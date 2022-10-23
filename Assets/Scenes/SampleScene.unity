@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 1
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 1.11
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.33333334
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -1044,6 +1044,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &628006798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 628006799}
+  m_Layer: 0
+  m_Name: Drone2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &628006799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628006798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2131287742}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &676099170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1492,7 @@ PrefabInstance:
       objectReference: {fileID: 1086011390}
     - target: {fileID: 3452515227111564040, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564042, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Height
@@ -2222,7 +2252,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1086011389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -89.3, y: -2.8, z: -31.1}
+  m_LocalPosition: {x: -46.14, y: -2.8, z: -26.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2131287742}
@@ -2769,7 +2799,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3452515227111564038, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Name
-      value: Robot_Scout_HyperX Variant (1)
+      value: Drone2
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: player
@@ -2777,7 +2807,7 @@ PrefabInstance:
       objectReference: {fileID: 712608452}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.data[0]
@@ -2790,22 +2820,26 @@ PrefabInstance:
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.data[2]
       value: 
-      objectReference: {fileID: 1016374753}
+      objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.data[3]
       value: 
-      objectReference: {fileID: 1804513623}
+      objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.data[4]
       value: 
-      objectReference: {fileID: 1860700881}
+      objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.data[5]
       value: 
-      objectReference: {fileID: 950981135}
+      objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564040, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452515227111564042, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
+      propertyPath: m_Radius
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564043, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_RootOrder
@@ -3948,7 +3982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2131287742}
   m_Layer: 0
-  m_Name: PatrolTargets_Drone1
+  m_Name: PatrolTargets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3971,6 +4005,7 @@ Transform:
   - {fileID: 1016374753}
   - {fileID: 2068482688}
   - {fileID: 1086011390}
+  - {fileID: 628006799}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4031,7 +4066,7 @@ PrefabInstance:
       objectReference: {fileID: 845852787}
     - target: {fileID: 1627720658511335391, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1682576694242345453, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_LocalScale.x
@@ -4087,7 +4122,7 @@ PrefabInstance:
       objectReference: {fileID: 1096165048}
     - target: {fileID: 3114995532531619410, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3229997598831606932, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4111,7 +4146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3357619335656574040, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3357619337110780220, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: updateAmmo.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4163,7 +4198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3500164968670004698, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 476.96
+      value: 556.3
       objectReference: {fileID: 0}
     - target: {fileID: 3500164968670004698, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4195,11 +4230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4022767541030444353, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4042342262930085933, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4366360163379513339, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4211,11 +4246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415202795191342834, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5702470786457882944, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7640104019523703328, guid: 817ca47edd52a2548b1b5a94e398e1df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4283,8 +4318,12 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: shootingMask.m_Bits
-      value: 16
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564039, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: patrolTargets.Array.size
@@ -4316,7 +4355,7 @@ PrefabInstance:
       objectReference: {fileID: 1086011390}
     - target: {fileID: 3452515227111564040, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3452515227111564042, guid: 73fa4d8bf60c9f34297f97ad4867ca7d, type: 3}
       propertyPath: m_Height
