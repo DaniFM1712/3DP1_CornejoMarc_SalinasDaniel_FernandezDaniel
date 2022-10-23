@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
         if(agent.isStopped) agent.isStopped = false;
         agent.speed = patrolSpeed;
         agent.acceleration = patrolAcceleration;
-        if (agent.hasPath && agent.remainingDistance < patrolMinDistance)
+        if (agent.hasPath && agent.remainingDistance <= patrolMinDistance)
             currentPatrolTarget++;
 
         agent.SetDestination(patrolTargets[currentPatrolTarget % patrolTargets.Count].position);
