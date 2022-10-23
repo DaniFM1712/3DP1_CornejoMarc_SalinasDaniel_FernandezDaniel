@@ -111,11 +111,7 @@ public class Enemy : MonoBehaviour
 
     void ChangeFromIdle()
     {
-        if (Time.time >= idleStarted + idleTime)
-        {
-            currentState = State.PATROL;
-            currentPatrolTarget = 0;
-        }
+
         if (hearsPlayer())
         {
             currentState = State.ALERT;
@@ -124,8 +120,12 @@ public class Enemy : MonoBehaviour
         {
             currentState = State.CHASE;
         }
-
         isHit();
+        if (Time.time >= idleStarted + idleTime)
+        {
+            currentState = State.PATROL;
+            currentPatrolTarget = 0;
+        }
     }
 
     private void updatePatrol()
