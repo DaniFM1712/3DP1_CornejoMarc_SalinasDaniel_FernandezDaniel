@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
 
     enum State { IDLE, PATROL, ALERT, CHASE, ATTACK, HIT, DIE}
     [SerializeField] State currentState;
-    [SerializeField] Animation animation;
 
     [SerializeField] GameObject player;
     [SerializeField] float hearDistance;
@@ -45,7 +44,6 @@ public class Enemy : MonoBehaviour
 
     [Header("ATTACK")]
     [SerializeField] float damage;
-    [SerializeField] float maxShootDist;
     [SerializeField] LayerMask shootingMask;
     [SerializeField] float timeToShoot;
     [SerializeField] float SHOOT_MAX;
@@ -115,10 +113,18 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time >= idleStarted + idleTime)
         {
-            animation.Stop();
             currentState = State.PATROL;
             currentPatrolTarget = 0;
         }
+        if (hearsPlayer())
+        {
+            currentState = State.ALERT;
+        }
+        if (seesPlayer() && !PlayerInRange())
+        {
+            currentState = State.CHASE;
+        }
+
         isHit();
     }
 
@@ -139,7 +145,6 @@ public class Enemy : MonoBehaviour
         if (currentPatrolTarget > patrolRoundsToIdle * patrolTargets.Count)
         {
             currentState = State.IDLE;
-            animation.CrossFade("IdleDron", 0.1f);
             idleStarted = Time.time;
         }
 
@@ -173,7 +178,6 @@ public class Enemy : MonoBehaviour
         if (!hearsPlayer() || totalRotated >= 360.0f)
         {
             currentState = State.IDLE;
-            animation.CrossFade("IdleDron",0.1f);
             idleStarted = Time.time;
         }
         isHit();
@@ -232,7 +236,7 @@ public class Enemy : MonoBehaviour
   
         if (!agent.isStopped) agent.isStopped = !agent.isStopped;
         Debug.Log(seesPlayer());
-        if ((lastTimeShooted + timeToShoot < Time.time) && seesPlayer() && Physics.Raycast(transform.position, distanceToPlayer.normalized, out RaycastHit hitInfo, maxShootDist, shootingMask))
+        if ((lastTimeShooted + timeToShoot < Time.time) && seesPlayer() && Physics.Raycast(transform.position, distanceToPlayer.normalized, out RaycastHit hitInfo, SHOOT_MAX, shootingMask))
         {
             if (hitInfo.collider.gameObject.TryGetComponent<HealthSystem>(out HealthSystem health) && lastTimeShooted + timeToShoot < Time.time)
             {
@@ -247,6 +251,10 @@ public class Enemy : MonoBehaviour
         if (seesPlayer() && !PlayerInRange())
         {
             currentState = State.CHASE;
+        }
+        if (!seesPlayer())
+        {
+            currentState = State.ALERT;
         }
         isHit();
     }
