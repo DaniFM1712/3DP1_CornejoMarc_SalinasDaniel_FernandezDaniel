@@ -10,4 +10,9 @@ public class PointsTextController : UIController
         gameObject.GetComponent<Text>().text = "POINTS: "+(int)current;
     }
 
+    public void ResetGallery()
+    {
+        gameObject.GetComponent<Text>().text = "POINTS: " + 0;
+    }
+
 }

@@ -6,10 +6,12 @@ using UnityEngine.Events;
 public class PointsSystem : MonoBehaviour
 {
     [SerializeField] UnityEvent<float, float> updatePoints;
+    [SerializeField] UnityEvent<float, float> resetGallery;
     float currentPoints;
     [SerializeField] float pointsToPass;
     [SerializeField] GameObject door;
     [SerializeField] float minDistanceToPlayer;
+    [SerializeField] KeyCode galleryReset = KeyCode.RightControl;
 
     private void Awake()
     {
@@ -18,10 +20,12 @@ public class PointsSystem : MonoBehaviour
 
     public void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(galleryReset))
         {
-            //addPoints(10f);
-        }*/
+            resetGallery.Invoke(-currentPoints,0f);
+            currentPoints = 0;
+            
+        }
         if (PointsNeeded())
         {
             OpenDoor();
